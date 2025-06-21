@@ -1,10 +1,22 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import UseAuth from '../../../Hook/useAuth';
 
 export default function Register() {
-    const {register, handleSubmit, formState: {errors}} = useForm()
+    const {register, handleSubmit, formState: {errors}} = useForm();
+    const {createUser} = UseAuth();
     const onSubmit = data => {
         console.log(data);
+        createUser(data.email, data.password)
+        .then(res => {
+          console.log(res.user);
+          
+        })
+        .catch(error => {
+          console.log(error);
+          
+        })
+        
         
     }
   return (
