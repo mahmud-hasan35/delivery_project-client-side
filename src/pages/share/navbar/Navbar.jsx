@@ -17,6 +17,16 @@ const navItems = (
     </li>
     <li>
       <NavLink
+        to="/coverage"
+        className={({ isActive }) =>
+          isActive ? "text-green-600 font-bold underline" : "text-gray-600"
+        }
+      >
+        Coverage
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
         to="/about"
         className={({ isActive }) =>
           isActive ? "text-green-600 font-bold underline" : "text-gray-600"
