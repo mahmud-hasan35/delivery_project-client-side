@@ -2,6 +2,7 @@ import React from 'react';
 import UseAuth from '../../Hook/useAuth';
 import { FcGoogle } from "react-icons/fc"; // Google icon
 import { useLocation, useNavigate } from 'react-router';
+import useAxios from '../../Hook/useAxios';
 
 export default function SocialLogin() {
   const { googleLogin } = UseAuth();
@@ -9,11 +10,27 @@ export default function SocialLogin() {
   const location = useLocation()
   const navigate = useNavigate()
   const form =  location.state?.form || '/';
+  const axiosInstance = useAxios();
 
   const handleGoogleSignIn = () => {
     googleLogin()
-      .then(res => {
-        console.log(res.user);
+      .then( async (result)=> {
+        const user = result.user;
+        console.log(result.user);
+
+           // update user profile in the database //
+
+          const userInfo = {
+            email: user.email,
+            role: 'user',
+            created_at:  new Date().toISOString(),
+            last_log_in: new Date().toISOString()
+
+          }
+
+        const res = await  axiosInstance.post('/users', userInfo);
+        console.log('user update info',res.data);
+
         navigate(form)
       })
       .catch(err => {
