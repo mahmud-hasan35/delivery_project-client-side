@@ -67,6 +67,16 @@ export default function Navbar() {
       </li>
       <li>
         <NavLink
+          to="/beARider"
+          className={({ isActive }) =>
+            isActive ? "text-green-600 font-bold underline" : "text-gray-600"
+          }
+        >
+          Be A Rider
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/about"
           className={({ isActive }) =>
             isActive ? "text-green-600 font-bold underline" : "text-gray-600"
@@ -91,7 +101,7 @@ export default function Navbar() {
             {navItems}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl"><ProfastLogo /></a>
+        <ProfastLogo></ProfastLogo>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
