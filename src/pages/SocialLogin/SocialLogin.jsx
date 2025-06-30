@@ -16,7 +16,7 @@ export default function SocialLogin() {
     googleLogin()
       .then( async (result)=> {
         const user = result.user;
-        console.log(result.user);
+        
 
            // update user profile in the database //
 

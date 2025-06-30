@@ -4,12 +4,17 @@ import UseAuth from '../../../Hook/useAuth';
 import axios from 'axios';
 import useAxios from '../../../Hook/useAxios';
 import SocialLogin from '../../SocialLogin/SocialLogin';
+import { useLocation, useNavigate } from 'react-router';
 
 export default function Register() {
     const {register, handleSubmit, formState: {errors}} = useForm();
     const {createUser, updateUserProfile} = UseAuth();
     const [profilePic,setProfilePic] = useState('')
     const axiosInstance = useAxios();
+
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state?.from || '/';
     const onSubmit = data => {
         console.log(data);
         createUser(data.email, data.password)
@@ -43,6 +48,7 @@ export default function Register() {
           updateUserProfile(userProfile)
           .then(() => {
             console.log('profile name is updated');
+            navigate(from)
             
           }) 
           .catch(error => {
@@ -77,7 +83,7 @@ export default function Register() {
      <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset className="fieldset">
           <label className="label">Name</label>
-          <input type="text" {...register('email', {required: true})}className="input" placeholder="Your Name" />
+          <input type="text" {...register('name', {required: true})}className="input" placeholder="Your Name" />
           {
             errors.email?.type === 'required' && <p className='text-red-600'>Name is required</p>
           }
