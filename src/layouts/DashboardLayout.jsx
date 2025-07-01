@@ -1,11 +1,11 @@
 import React from 'react'
 import { NavLink, Outlet } from 'react-router'
 import ProfastLogo from '../pages/share/profastLogo/ProfastLogo'
-import { FaHome, FaBoxOpen, FaMoneyCheckAlt, FaUserEdit, FaSearchLocation, FaUserCheck, FaUserClock, FaUserShield } from 'react-icons/fa';
+import { FaHome, FaBoxOpen, FaMoneyCheckAlt, FaUserEdit, FaSearchLocation, FaUserCheck, FaUserClock, FaUserShield, FaMotorcycle } from 'react-icons/fa';
 import useUserRole from '../Hook/useUserRole';
 export default function DashboardLayout() {
   const { role, roleLoading } = useUserRole()
-  
+
 
   return (
     <div className="drawer lg:drawer-open">
@@ -80,6 +80,12 @@ export default function DashboardLayout() {
 
           {!roleLoading && role === 'admin' &&
             <>
+              <li>
+                <NavLink to="/dashboard/assign-rider">
+                  <FaMotorcycle className="inline-block mr-2" />
+                  Assign Rider
+                </NavLink>
+              </li>
               <li>
                 <NavLink to="/dashboard/active-riders">
                   <FaUserCheck className="inline-block mr-2" />
