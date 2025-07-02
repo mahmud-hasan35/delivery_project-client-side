@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink, Outlet } from 'react-router'
 import ProfastLogo from '../pages/share/profastLogo/ProfastLogo'
-import { FaHome, FaBoxOpen, FaMoneyCheckAlt, FaUserEdit, FaSearchLocation, FaUserCheck, FaUserClock, FaUserShield, FaMotorcycle } from 'react-icons/fa';
+import { FaHome, FaBoxOpen, FaMoneyCheckAlt, FaUserEdit, FaSearchLocation, FaUserCheck, FaUserClock, FaUserShield, FaMotorcycle, FaTasks, FaCheckCircle, FaWallet } from 'react-icons/fa';
 import useUserRole from '../Hook/useUserRole';
 export default function DashboardLayout() {
   const { role, roleLoading } = useUserRole()
@@ -77,6 +77,30 @@ export default function DashboardLayout() {
             </NavLink>
           </li>
           {/* riders link */}
+
+          {!roleLoading && role === 'rider' && <>
+            <li>
+              <NavLink to="/dashboard/pending-deliveries">
+                <FaTasks className="inline-block mr-2" />
+                Pending Deliveries
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/dashboard/completed-deliveries">
+                <FaCheckCircle className="inline-block mr-2" />
+                Completed Deliveries
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/dashboard/my-earnings">
+                <FaWallet className="inline-block mr-2" />
+                My Earnings
+              </NavLink>
+            </li>
+          </>}
+
+
+          {/* admin link */}
 
           {!roleLoading && role === 'admin' &&
             <>

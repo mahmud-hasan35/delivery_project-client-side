@@ -1,7 +1,7 @@
 
 import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2';
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 import UseAuth from "../../Hook/useAuth";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
@@ -14,6 +14,7 @@ const generateTrackingID = () => {
 };
 
 const SendParcel = () => {
+    const navigate = useNavigate()
     const {
         register,
         handleSubmit,
@@ -118,6 +119,8 @@ const SendParcel = () => {
                             timer: 1500,
                             showConfirmButton: false
                         });
+
+                        navigate('/dashboard/myParcels')
                     }
                     
                 })
