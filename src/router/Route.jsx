@@ -120,6 +120,13 @@ export const router = createBrowserRouter([
         </RiderRoute>
 
       },
+      {
+        path: 'track-parcel',
+        element: <RiderRoute>
+          <TrackParcel/>
+        </RiderRoute>
+
+      },
 
 
       // admin only routes //
